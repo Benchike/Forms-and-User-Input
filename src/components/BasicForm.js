@@ -21,7 +21,7 @@ const BasicForm = (props) => {
 
   const {
     value: enteredEmail,
-    isValid: enteredEmailIsValid,
+    isValid: emailIsValid,
     hasError: emailInputHasError,
     valueChangeHandler: emailChangedHandler,
     inputBlurHandler: emailBlurHandler,
@@ -30,14 +30,14 @@ const BasicForm = (props) => {
 
   let formIsValid = false;
 
-  if (firstNameIsValid && lastNameIsValid && enteredEmailIsValid) {
+  if (firstNameIsValid && lastNameIsValid && emailIsValid) {
     formIsValid = true;
   }
 
-  const formSubmissionHandler = (event) => {
+  const formSubmitHandler = (event) => {
     event.preventDefault();
 
-    if (!firstNameIsValid && !lastNameIsValid && enteredEmailIsValid) {
+    if (!formIsValid) {
       return;
     }
     console.log(firstName);
@@ -62,7 +62,7 @@ const BasicForm = (props) => {
     : 'form-control';
 
   return (
-    <form onSubmit={formSubmissionHandler}>
+    <form onSubmit={formSubmitHandler}>
       <div className="control-group">
         <div className={firstNameInputClasses}>
           <label htmlFor="name">First Name</label>
